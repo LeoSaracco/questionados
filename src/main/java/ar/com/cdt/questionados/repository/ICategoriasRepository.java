@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import ar.com.cdt.questionados.models.Categorias;
 
 @Repository
-public interface ICategoriasRepository extends JpaRepository<Categorias, Integer>{
+public interface ICategoriasRepository extends JpaRepository<Categorias, Integer> {
 
 }
