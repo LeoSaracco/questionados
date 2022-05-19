@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import ar.com.cdt.questionados.dto.DTOCategoria;
 import ar.com.cdt.questionados.models.Categorias;
 import ar.com.cdt.questionados.repository.ICategoriasRepository;
 import ar.com.cdt.questionados.service.CategoriasService;
@@ -21,8 +22,11 @@ public class CategoriasServiceImpl implements CategoriasService {
 	}
 
 	@Override
-	public Categorias save(Categorias c) {
-		return iCategoriaRepository.save(c);
+	public Categorias save(DTOCategoria c) {
+		Categorias cat = new Categorias();
+		cat.setNombreCategoria(c.getNombreCategoria());
+		cat.setDescripcionCategoria(c.getDescripcionCategoria());
+		return iCategoriaRepository.save(cat);
 	}
 
 	@Override
@@ -34,11 +38,14 @@ public class CategoriasServiceImpl implements CategoriasService {
 	}
 
 	@Override
-		public Boolean delete(Categorias c) {
+	public Boolean delete(Integer idCategoria) {
 		try {
-			iCategoriaRepository.delete(c);
+			Categorias categoria = new Categorias();
+			categoria.setIdCategoria(idCategoria);
+			iCategoriaRepository.delete(categoria);
 			return true;
 		} catch (Exception e) {
+			e.printStackTrace();
 			return false;
 		}
 	}
