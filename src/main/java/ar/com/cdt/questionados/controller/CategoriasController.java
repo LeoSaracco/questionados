@@ -1,6 +1,7 @@
 package ar.com.cdt.questionados.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -29,6 +30,11 @@ public class CategoriasController {
 	public List<Categorias> getAllCategorias() {
 		return cs.getAllCategorias();
 	}
+	
+	@GetMapping("/getCategoriasByID/{id}")
+	public Optional<Categorias> getCategoriasByID(@PathVariable("id") Integer idCategoria) {
+		return cs.getCategoriasByID(idCategoria);
+	}
 
 	@PostMapping("/saveCategorias")
 	public ResponseEntity<Categorias> saveNewCategorias(@RequestBody DTOCategoria c) {
@@ -41,7 +47,7 @@ public class CategoriasController {
 	}
 
 	@DeleteMapping("/deleteCategorias/{id}")
-	public Boolean deleteCategorias(@PathVariable("id") Integer id) {
-		return cs.delete(id);
+	public Boolean deleteCategorias(@PathVariable("id") Integer idCategoria) {
+		return cs.delete(idCategoria);
 	}
 }
