@@ -30,8 +30,7 @@ public class Preguntas {
 	@JoinColumn(name = "id_categoria", referencedColumnName = "id_categoria")
 	private Categorias categoriaIdPregunta;
 
-	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-	@JoinColumn(name = "idRespuesta")
+	@OneToMany(mappedBy = "pregunta", cascade = CascadeType.ALL)
 	private List<Respuesta> respuestas = new ArrayList<>();
 
 	public int getIdPregunta() {

@@ -2,9 +2,12 @@ package ar.com.cdt.questionados.models;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -19,6 +22,10 @@ public class Respuesta {
 	private String textoRespuesta;
 	@Column(name = "correctaRespuesta", nullable = false)
 	private Boolean correctaRespuesta;
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "pregunta_id")
+	private Preguntas pregunta;
 
 	public int getIdRespuesta() {
 		return idRespuesta;
@@ -44,9 +51,17 @@ public class Respuesta {
 		this.correctaRespuesta = correctaRespuesta;
 	}
 
+	public Preguntas getPregunta() {
+		return pregunta;
+	}
+
+	public void setPregunta(Preguntas pregunta) {
+		this.pregunta = pregunta;
+	}
+
 	@Override
 	public String toString() {
 		return "Respuesta [idRespuesta=" + idRespuesta + ", textoRespuesta=" + textoRespuesta + ", correctaRespuesta="
-				+ correctaRespuesta + "]";
+				+ correctaRespuesta + ", pregunta=" + pregunta + "]";
 	}
 }
