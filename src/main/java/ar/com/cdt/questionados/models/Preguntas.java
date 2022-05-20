@@ -71,6 +71,4 @@ public class Preguntas {
 		return "Preguntas [idPregunta=" + idPregunta + ", enunciadoPregunta=" + enunciadoPregunta
 				+ ", categoriaIdPregunta=" + categoriaIdPregunta + ", respuestas=" + respuestas + "]";
 	}
-
-	
 }
