@@ -1,12 +1,9 @@
 package ar.com.cdt.questionados.dto;
 
-import java.util.ArrayList;
-
-public class DTOPreguntaRespuesta {
+public class DTOPregunta {
 
 	private int idCategoriaPregunta;
 	private String enunciadoPregunta;
-	private ArrayList<DTORespuesta> respuestas;
 
 	public int getIdCategoriaPregunta() {
 		return idCategoriaPregunta;
@@ -24,17 +21,9 @@ public class DTOPreguntaRespuesta {
 		this.enunciadoPregunta = enunciadoPregunta;
 	}
 
-	public ArrayList<DTORespuesta> getRespuestas() {
-		return respuestas;
-	}
-
-	public void setRespuestas(ArrayList<DTORespuesta> respuestas) {
-		this.respuestas = respuestas;
-	}
-
 	@Override
 	public String toString() {
 		return "DTOPreguntaRespuesta [idCategoriaPregunta=" + idCategoriaPregunta + ", enunciadoPregunta="
-				+ enunciadoPregunta + ", respuestas=" + respuestas + "]";
+				+ enunciadoPregunta + "]";
 	}
 }
