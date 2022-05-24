@@ -1,7 +1,7 @@
 package ar.com.cdt.questionados.service.impl;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -30,12 +30,9 @@ public class PreguntasServiceImpl implements PreguntasService {
 
 	@Override
 	public DTOPreguntaRespuesta save(DTOPreguntaRespuesta dtoPR) {
-
 		System.out.println("============= DTO: " + dtoPR);
 		// Controlo de que no haya más de 2 respuestas correctas
 		DTOPreguntaRespuesta dtoFinal = new DTOPreguntaRespuesta();
-
-		// https://www.youtube.com/watch?v=j6D-9XC-mDQ
 
 		int contadorCorrectas = 0;
 		for (DTORespuesta respuesta : dtoPR.getRespuestas()) {
@@ -75,19 +72,12 @@ public class PreguntasServiceImpl implements PreguntasService {
 	}
 
 	@Override
-	public ArrayList<Preguntas> getPreguntaByID(Integer idPregunta) {
-		//Optional<Preguntas> aux = preguntasRepository.findById(idPregunta);
-
-		return null;
+	public Optional<Preguntas> getPreguntaByID(Integer idPregunta) {
+		return preguntasRepository.findById(idPregunta);
 	}
 
 	@Override
 	public List<Preguntas> getAllPreguntas() {
-		// TODO Auto-generated method stub
 		return preguntasRepository.findAll();
 	}
-	
-
 }
-
-
