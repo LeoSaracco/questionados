@@ -28,12 +28,12 @@ public class Preguntas {
 	@Column(name = "enunciadoPregunta", nullable = false)
 	private String enunciadoPregunta;
 
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne(cascade = { CascadeType.ALL, CascadeType.REMOVE }, orphanRemoval = true)
 	@JoinColumn(name = "id_categoria", referencedColumnName = "id_categoria")
 	private Categorias categoriaIdPregunta;
 
-	@OneToMany(mappedBy = "pregunta", cascade = CascadeType.ALL)
-    @JsonManagedReference
+	@OneToMany(mappedBy = "pregunta", cascade = { CascadeType.ALL, CascadeType.REMOVE }, orphanRemoval = true)
+	@JsonManagedReference
 	private List<Respuesta> respuestas = new ArrayList<>();
 
 	public int getIdPregunta() {

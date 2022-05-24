@@ -13,4 +13,8 @@ public interface PreguntasService {
 	Optional<Preguntas> getPreguntaByID(Integer idPregunta);
 
 	List<Preguntas> getAllPreguntas();
+
+	Preguntas getPreguntaRandom();
+
+	Boolean deletePregunta(int idPregunta);
 }

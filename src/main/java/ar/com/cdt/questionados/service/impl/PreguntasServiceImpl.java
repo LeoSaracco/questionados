@@ -80,4 +80,19 @@ public class PreguntasServiceImpl implements PreguntasService {
 	public List<Preguntas> getAllPreguntas() {
 		return preguntasRepository.findAll();
 	}
+
+	@Override
+	public Preguntas getPreguntaRandom() {
+		return preguntasRepository.getPreguntaRandom();
+	}
+
+	@Override
+	public Boolean deletePregunta(int idPregunta) {
+		try {
+			preguntasRepository.deleteById(idPregunta);
+			return true;
+		} catch (Exception e) {
+			return false;
+		}
+	}
 }
