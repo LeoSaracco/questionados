@@ -14,6 +14,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 @Table(name = "preguntas")
 public class Preguntas {
@@ -31,6 +33,7 @@ public class Preguntas {
 	private Categorias categoriaIdPregunta;
 
 	@OneToMany(mappedBy = "pregunta", cascade = CascadeType.ALL)
+    @JsonManagedReference
 	private List<Respuesta> respuestas = new ArrayList<>();
 
 	public int getIdPregunta() {

@@ -1,5 +1,8 @@
 package ar.com.cdt.questionados.service.impl;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -40,6 +43,7 @@ public class PreguntasServiceImpl implements PreguntasService {
 				contadorCorrectas++;
 			}
 			if (contadorCorrectas > 1) {
+				System.out.println("NO SE GUARDA CONTADOR " + contadorCorrectas);
 				return null;
 			}
 		}
@@ -47,25 +51,43 @@ public class PreguntasServiceImpl implements PreguntasService {
 		// Guardo la pregunta
 		Preguntas pregToSave = new Preguntas();
 		pregToSave.setEnunciadoPregunta(dtoPR.getEnunciadoPregunta());
-		Categorias c = new Categorias();
-		c = categoriaRepository.findById(dtoPR.getIdCategoriaPregunta()).get();
-		pregToSave.setCategoriaIdPregunta(c);
+
+		Categorias categoria = new Categorias();
+		categoria = categoriaRepository.findById(dtoPR.getIdCategoriaPregunta()).get();
+		pregToSave.setCategoriaIdPregunta(categoria);
 		try {
-			Preguntas aux = preguntasRepository.save(pregToSave);
+			Preguntas pregunta = preguntasRepository.save(pregToSave);
 			for (DTORespuesta dtoRespuesta : dtoPR.getRespuestas()) {
-				Respuesta r = new Respuesta();
-				r.setTextoRespuesta(dtoRespuesta.getTextoRespuesta());
-				r.setCorrectaRespuesta(dtoRespuesta.getCorrectaRespuesta());
-				r.setPregunta(aux);
-				respuestasRepository.save(r);
+				Respuesta respuesta = new Respuesta();
+				respuesta.setTextoRespuesta(dtoRespuesta.getTextoRespuesta());
+				respuesta.setCorrectaRespuesta(dtoRespuesta.getCorrectaRespuesta());
+				respuesta.setPregunta(pregunta);
+				respuestasRepository.save(respuesta);
 			}
 
 			dtoFinal.setEnunciadoPregunta(pregToSave.getEnunciadoPregunta());
-			dtoFinal.setIdCategoriaPregunta(c.getIdCategoria());
+			dtoFinal.setIdCategoriaPregunta(categoria.getIdCategoria());
 			dtoFinal.setRespuestas(dtoPR.getRespuestas());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return dtoFinal;
 	}
+
+	@Override
+	public ArrayList<Preguntas> getPreguntaByID(Integer idPregunta) {
+		//Optional<Preguntas> aux = preguntasRepository.findById(idPregunta);
+
+		return null;
+	}
+
+	@Override
+	public List<Preguntas> getAllPreguntas() {
+		// TODO Auto-generated method stub
+		return preguntasRepository.findAll();
+	}
+	
+
 }
+
+

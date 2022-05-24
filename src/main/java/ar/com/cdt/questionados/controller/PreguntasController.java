@@ -1,14 +1,20 @@
 package ar.com.cdt.questionados.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import ar.com.cdt.questionados.dto.DTOPreguntaRespuesta;
+import ar.com.cdt.questionados.models.Preguntas;
 import ar.com.cdt.questionados.service.PreguntasService;
 
 @RestController
@@ -19,7 +25,17 @@ public class PreguntasController {
 	PreguntasService ps;
 
 	@PostMapping("/savePreguntas")
-	public ResponseEntity<DTOPreguntaRespuesta> saveNewCategorias(@RequestBody DTOPreguntaRespuesta dto) {
+	public ResponseEntity<DTOPreguntaRespuesta> saveNewPreguntas(@RequestBody DTOPreguntaRespuesta dto) {
 		return new ResponseEntity<DTOPreguntaRespuesta>(ps.save(dto), HttpStatus.CREATED);
+	}
+
+	@GetMapping("/getPregunta/{idPregunta}")
+	public ArrayList<Preguntas> getPreguntaByID(@PathVariable("idPregunta") Integer idPregunta) {
+		return ps.getPreguntaByID(idPregunta);
+	}
+
+	@GetMapping("/getAllPreguntas")
+	public List<Preguntas> getAllPreg() {
+		return ps.getAllPreguntas();
 	}
 }
