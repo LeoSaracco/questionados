@@ -87,12 +87,7 @@ public class PreguntasServiceImpl implements PreguntasService {
 	}
 
 	@Override
-	public Boolean deletePregunta(int idPregunta) {
-		try {
-			preguntasRepository.deleteById(idPregunta);
-			return true;
-		} catch (Exception e) {
-			return false;
-		}
+	public Boolean getRespuestaVerdadera(int idPregunta, int idRespuesta) {
+		return preguntasRepository.findByIdPreguntaAndIdRespuesta(idPregunta, idRespuesta);
 	}
 }

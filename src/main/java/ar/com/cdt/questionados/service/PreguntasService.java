@@ -15,6 +15,6 @@ public interface PreguntasService {
 	List<Preguntas> getAllPreguntas();
 
 	Preguntas getPreguntaRandom();
-
-	Boolean deletePregunta(int idPregunta);
+	
+	Boolean getRespuestaVerdadera(int idPregunta, int idRespuesta);
 }
