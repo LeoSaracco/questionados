@@ -88,6 +88,7 @@ public class PreguntasServiceImpl implements PreguntasService {
 
 	@Override
 	public Boolean getRespuestaVerdadera(int idPregunta, int idRespuesta) {
-		return preguntasRepository.findByIdPreguntaAndIdRespuesta(idPregunta, idRespuesta);
+		Boolean resp = preguntasRepository.findByIdPreguntaAndIdRespuesta(idPregunta, idRespuesta);
+		return preguntasRepository.findByIdPreguntaAndIdRespuesta(idPregunta, idRespuesta) != null ? true : false;
 	}
 }
