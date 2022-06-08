@@ -29,10 +29,8 @@ import ar.com.cdt.questionados.payload.response.JwtResponse;
 import ar.com.cdt.questionados.payload.response.MessageResponse;
 import ar.com.cdt.questionados.repository.RoleRepository;
 import ar.com.cdt.questionados.repository.UserRepository;
-
 import ar.com.cdt.questionados.security.jwt.JwtUtils;
 import ar.com.cdt.questionados.security.services.UserDetailsImpl;
-
 import io.swagger.annotations.ApiOperation;
 
 
@@ -61,7 +59,7 @@ public class AuthController {
 	 * @param loginRequest
 	 * @return
 	 */
-	@ApiOperation(value = "login an account", notes = "Acceder a contenido si hasRole('MODERATOR').")
+	//@ApiOperation(value = "login an account", notes = "Acceder a contenido si hasRole('MODERATOR').")
 	@PostMapping("/signin")
 	public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
 
@@ -85,7 +83,7 @@ public class AuthController {
 	 * @param signUpRequest
 	 * @return
 	 */
-	@ApiOperation(value = "signup new account", notes = "Acceder a contenido si hasRole('MODERATOR').")
+	//@ApiOperation(value = "signup new account", notes = "Acceder a contenido si hasRole('MODERATOR').")
 	@PostMapping("/signup")
 	public ResponseEntity<?> registerUser(@Valid @RequestBody SignupRequest signUpRequest) {
 
