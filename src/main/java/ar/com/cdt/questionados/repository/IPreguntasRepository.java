@@ -10,7 +10,7 @@ import ar.com.cdt.questionados.models.Preguntas;
 @Repository
 public interface IPreguntasRepository extends JpaRepository<Preguntas, Integer> {
 
-	@Query(nativeQuery = true, value = "SELECT p.* FROM preguntas p ORDER BY RAND() LIMIT 1")
+	@Query(nativeQuery = true, value = "SELECT p.* FROM preguntas p ORDER BY random() LIMIT 1")
 	Preguntas getPreguntaRandom();
 
 	@Query(nativeQuery = true, value = "SELECT r.correcta_respuesta FROM preguntas p INNER JOIN respuesta r ON p.id_pregunta=r.pregunta_id WHERE p.id_pregunta=:idPregunta AND r.id_respuesta=:idRespuesta")
